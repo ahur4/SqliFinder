@@ -7,11 +7,9 @@ from requests.models import HTTPError
 
 def scan(query,count):
     try:
-        if count == 1: result = search(query, num_results=count)
+        if count > 1;count -= 1: result = search(query, num_results=count)
 
         elif count == 0: print(Fore.RED+"\n [!] Input Error !"); exit()
-
-        elif count > 1: count -= 1; result = search(query, num_results=count)
         
         else: print(Fore.RED+"\n [!] Bye !"); exit()
 
@@ -19,7 +17,6 @@ def scan(query,count):
         for i in result:
             amir += 1
             print(Fore.LIGHTBLUE_EX+f"\n [{amir}] Testing --> {i}")
-            x = i
             i = i+"'"
             
             try:
@@ -77,5 +74,4 @@ if __name__ == "__main__":
         exit()
     t = threading.Thread(target=scan,args=(query,count))
     t.start(); t.join()
-
 
