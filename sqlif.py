@@ -7,7 +7,7 @@ from requests.models import HTTPError
 
 def scan(query,count):
     try:
-        if count > 1;count -= 1: result = search(query, num_results=count)
+        if count > 1: count -= 1; result = search(query, num_results=count)
 
         elif count == 0: print(Fore.RED+"\n [!] Input Error !"); exit()
         
