@@ -1,15 +1,17 @@
+import multiprocessing
 from googlesearch import search
 import requests, time, os
 from colorama import Fore
-import threading
 
 from requests.models import HTTPError
 
 def scan(query,count):
     try:
-        if count > 1: count -= 1; result = search(query, num_results=count)
+        if count == 1: result = search(query, num_results=count)
 
         elif count == 0: print(Fore.RED+"\n [!] Input Error !"); exit()
+
+        elif count > 1: count -= 1; result = search(query, num_results=count)
         
         else: print(Fore.RED+"\n [!] Bye !"); exit()
 
@@ -17,6 +19,7 @@ def scan(query,count):
         for i in result:
             amir += 1
             print(Fore.LIGHTBLUE_EX+f"\n [{amir}] Testing --> {i}")
+            x = i
             i = i+"'"
             
             try:
@@ -56,10 +59,10 @@ if __name__ == "__main__":
         '.||  ``-...__..-`
          |  |
          |__|       --------------------------------------------
-         /||\       Coded By AmirHossein Rahmani | @TheWebSploit 
-        //||\\                       v 1.0.1
-       // || \\     ---------------------------------------------
-    __//__||__\\__
+         /||\\       Coded By AmirHossein Rahmani | @TheWebSploit 
+        //||\\\\                      v 1.0.1
+       // || \\\\   ---------------------------------------------
+    __//__||__\\\\ __
    '--------------' 
 
     """)
@@ -72,6 +75,9 @@ if __name__ == "__main__":
     except:
         print(Fore.RED+"\n [!] There is an Error !")
         exit()
-    t = threading.Thread(target=scan,args=(query,count))
-    t.start(); t.join()
+    
 
+
+    p1 = multiprocessing.Process(target=scan, args=(query,count))
+    p1.start()
+    p1.join()
